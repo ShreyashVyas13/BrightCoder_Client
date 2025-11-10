@@ -7,7 +7,6 @@ import {
   FaChalkboardTeacher,
 } from "react-icons/fa";
 import "./AdminDashboard.css";
-import ThemeToggle from "../../client/src/components/ThemeToggle";
 
 function AdminDashboard() {
   const [stats, setStats] = useState({

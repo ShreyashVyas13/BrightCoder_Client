@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminLogin.css";
-import ThemeToggle from "../../client/src/components/ThemeToggle";
+import ThemeToggle from "../components/ThemeToggle";
 
 function AdminLogin() {
   const [form, setForm] = useState({ email: "", password: "" });

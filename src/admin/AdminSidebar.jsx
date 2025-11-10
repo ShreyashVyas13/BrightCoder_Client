@@ -9,7 +9,7 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import "./AdminLayout.css";
-import ThemeToggle from "../../client/src/components/ThemeToggle";
+import ThemeToggle from "../components/ThemeToggle";
 
 function AdminSidebar() {
   const [collapsed, setCollapsed] = useState(false);
