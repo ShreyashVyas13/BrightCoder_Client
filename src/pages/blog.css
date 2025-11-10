@@ -1,0 +1,12 @@
+.blog-section {
+  max-width: 800px;
+  margin: auto;
+}
+.blog-section h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.blog-section p {
+  font-style: italic;
+  color: var(--muted);
+}

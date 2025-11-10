@@ -1,0 +1,175 @@
+/* Import a modern font like Inter from Google Fonts (optional but recommended) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Add this to your main CSS file or here */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px var(--brand));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px var(--brand));
+  }
+}
+
+.inquiry-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 3rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem; /* Larger radius */
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* SVG section */
+.inquiry-illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inquiry-illustration img {
+  max-width: 100%;
+  height: auto;
+  animation: glow 5s ease-in-out infinite;
+}
+
+/* Form section */
+.inquiry-form {
+  color: var(--text);
+}
+
+.inquiry-form h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+.inquiry-subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.inquiry-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Floating Label Group */
+.form-group {
+  position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 1rem 0.75rem 0.5rem; /* Adjust padding for label */
+  border: 2px solid var(--border);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background: var(--bg);
+  color: var(--text);
+  transition: border-color 0.3s ease;
+}
+
+.form-group label {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.75rem;
+  color: var(--muted);
+  font-size: 1rem;
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+}
+
+/* The magic for floating labels */
+.form-group input:focus + label,
+.form-group textarea:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:not(:placeholder-shown) + label {
+  top: 0.25rem;
+  left: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--brand);
+  font-weight: 500;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+
+.inquiry-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(45deg, var(--brand), var(--brand-dark));
+  color: #fff;
+  padding: 0.9rem 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px -5px var(--brand);
+}
+.inquiry-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 20px -5px var(--brand);
+}
+.inquiry-btn:active {
+  transform: translateY(-1px) scale(1);
+  box-shadow: 0 4px 15px -5px var(--brand);
+}
+.inquiry-btn svg {
+  transition: transform 0.3s ease;
+}
+.inquiry-btn:hover svg {
+  transform: translateX(3px);
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+  .inquiry-container {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    margin: 2rem auto;
+  }
+  .inquiry-illustration {
+    max-width: 300px;
+    margin: 0 auto 2rem auto;
+  }
+  .inquiry-form h1,
+  .inquiry-subtitle {
+    text-align: center;
+  }
+}

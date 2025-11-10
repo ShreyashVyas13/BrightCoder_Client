@@ -1,0 +1,15 @@
+/* Optional: per-page styles */
+.home-hero {
+  padding: 2rem 0;
+  text-align: center;
+}
+.about-section {
+  max-width: 700px;
+  margin: auto;
+}
+.tutorial-list li {
+  margin: 0.5rem 0;
+}
+.blog-section {
+  font-style: italic;
+}

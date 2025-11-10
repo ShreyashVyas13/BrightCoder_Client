@@ -1,0 +1,12 @@
+.profile-section {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+.profile-section h1 {
+  margin-bottom: 1rem;
+  color: var(--brand-dark);
+}
+.profile-section p {
+  color: var(--muted);
+}

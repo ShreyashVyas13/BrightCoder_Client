@@ -1,0 +1,48 @@
+/* ------------------------------
+   Theme Variables
+------------------------------- */
+:root {
+  /* Light theme */
+  --bg: #ffffff;
+  --text: #222222;
+  --muted: #555555;
+  --brand: #3b82f6;       /* blue */
+  --brand-dark: #1e40af;
+  --border: #e5e7eb;
+  --card-bg: #f9fafb;
+}
+
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --brand: #60a5fa;
+  --brand-dark: #2563eb;
+  --border: #1e293b;
+  --card-bg: #1e293b;
+}
+
+/* ------------------------------
+   Base Styles
+------------------------------- */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
