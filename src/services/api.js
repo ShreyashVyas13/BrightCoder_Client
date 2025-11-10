@@ -206,6 +206,96 @@
 //   axios.post(`${BASE_API}/inquiries/${id}/feedback`, { feedback });
 
 
+// import axios from "axios";
+
+// // 🌍 Auto-detect environment (Localhost or Production)
+// const isLocal = window.location.hostname === "localhost";
+
+// // 🧩 Dynamic Base URL (Localhost → Render → Vercel)
+// const API_BASE_URL = isLocal
+//   ? "http://localhost:5000/api"
+//   : import.meta.env.VITE_API_URL || "https://brightcoder-admin.onrender.com/api";
+
+// console.log("🌐 Using API Base URL:", API_BASE_URL);
+
+// // 🧠 Axios Instance
+// const API = axios.create({
+//   baseURL: API_BASE_URL,
+//   headers: {
+//     "Cache-Control": "no-cache",
+//     Pragma: "no-cache",
+//     Expires: "0",
+//   },
+// });
+
+
+// // ================================
+// // ✅ Tutorials
+// // ================================
+
+// // 🕓 With retry logic to handle Render cold start
+// export const getTutorials = async (retries = 3) => {
+//   for (let i = 0; i < retries; i++) {
+//     try {
+//       const res = await API.get(`/tutorials?t=${Date.now()}`);
+//       console.log("✅ Backend awake");
+//       return res.data;
+//     } catch (err) {
+//       console.warn(`⚠️ Retry ${i + 1}: Backend might be waking up...`);
+//       await new Promise((r) => setTimeout(r, 3000)); // wait 3 sec before retry
+//     }
+//   }
+//   throw new Error("❌ Backend unreachable after retries");
+// };
+
+// export const addTutorial = (data) => API.post("/tutorials", data);
+// export const updateTutorial = (id, data) => API.put(`/tutorials/${id}`, data);
+// export const deleteTutorial = (id) => API.delete(`/tutorials/${id}`);
+// export const getTutorialById = (id) => API.get(`/tutorials/${id}`);
+
+// // ✅ Fix: avoid browser cache on dynamic fetch
+// export const getTutorialByLink = (link) =>
+//   API.get(`/tutorials/link/${link}?t=${Date.now()}`);
+
+
+// // ================================
+// // ✅ Blogs
+// // ================================
+// const BLOG_API = `${API_BASE_URL}/blogs`;
+
+// export const getBlogs = () =>
+//   axios.get(BLOG_API, {
+//     headers: { "Cache-Control": "no-cache" },
+//   });
+
+// export const getBlogById = (id) =>
+//   axios.get(`${BLOG_API}/${id}`, {
+//     headers: { "Cache-Control": "no-cache" },
+//   });
+
+// export const addBlog = (data) => axios.post(BLOG_API, data);
+// export const updateBlog = (id, data) => axios.put(`${BLOG_API}/${id}`, data);
+// export const deleteBlog = (id) => axios.delete(`${BLOG_API}/${id}`);
+
+
+// // ================================
+// // ✅ Inquiries
+// // ================================
+// const BASE_API = API_BASE_URL;
+
+// export const getInquiries = () =>
+//   axios.get(`${BASE_API}/inquiries`, {
+//     headers: { "Cache-Control": "no-cache" },
+//   });
+
+// export const sendInquiry = (data) =>
+//   axios.post(`${BASE_API}/inquiries`, data);
+
+// export const sendFeedback = (id, feedback) =>
+//   axios.post(`${BASE_API}/inquiries/${id}/feedback`, { feedback });
+
+
+
 import axios from "axios";
 
 // 🌍 Auto-detect environment (Localhost or Production)
@@ -228,7 +318,6 @@ const API = axios.create({
   },
 });
 
-
 // ================================
 // ✅ Tutorials
 // ================================
@@ -238,10 +327,15 @@ export const getTutorials = async (retries = 3) => {
   for (let i = 0; i < retries; i++) {
     try {
       const res = await API.get(`/tutorials?t=${Date.now()}`);
-      console.log("✅ Backend awake");
+      console.log("✅ Tutorials fetched successfully (Backend awake)");
       return res.data;
     } catch (err) {
-      console.warn(`⚠️ Retry ${i + 1}: Backend might be waking up...`);
+      // Agar 404 hai to retry mat karo (route nahi mila)
+      if (err.response && err.response.status === 404) {
+        console.error("❌ 404: Tutorials route not found on backend");
+        throw err;
+      }
+      console.warn(`⚠️ Retry ${i + 1}/${retries}: Backend might be waking up...`);
       await new Promise((r) => setTimeout(r, 3000)); // wait 3 sec before retry
     }
   }
@@ -256,7 +350,6 @@ export const getTutorialById = (id) => API.get(`/tutorials/${id}`);
 // ✅ Fix: avoid browser cache on dynamic fetch
 export const getTutorialByLink = (link) =>
   API.get(`/tutorials/link/${link}?t=${Date.now()}`);
-
 
 // ================================
 // ✅ Blogs
@@ -277,7 +370,6 @@ export const addBlog = (data) => axios.post(BLOG_API, data);
 export const updateBlog = (id, data) => axios.put(`${BLOG_API}/${id}`, data);
 export const deleteBlog = (id) => axios.delete(`${BLOG_API}/${id}`);
 
-
 // ================================
 // ✅ Inquiries
 // ================================
@@ -293,4 +385,3 @@ export const sendInquiry = (data) =>
 
 export const sendFeedback = (id, feedback) =>
   axios.post(`${BASE_API}/inquiries/${id}/feedback`, { feedback });
-
