@@ -169,8 +169,14 @@ import AdminLogin from "./admin/AdminLogin.jsx";
 // ✅ Middleware (must also be inside frontend/src/middleware/)
 import AdminAuth from "./middleware/AdminAuth.jsx";
 import ProtectedRoute from "./middleware/ProtectedRoute.jsx";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    fetch("https://brightcoder-admin.onrender.com/api")
+      .then(() => console.log("✅ Backend awake"))
+      .catch(() => console.log("⚠️ Backend sleeping, waking up..."));
+  }, []);
   return (
     <Routes>
       <Route element={<Layout />}>
